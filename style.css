@@ -45,7 +45,6 @@ main {
 }
 
 article {
-    margin: auto;
     background-color:  var(--color-white);
     border-radius: var(--spacing-4);
     box-shadow: 0px 8px 70px -36px var(--color-very-dark-grayish-blue);
@@ -54,29 +53,30 @@ article {
 }
 
 .article-pic {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    object-position: top;
+    background-image: url('images/drawers.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
 }
 
-article>section {
+section {
     padding: var(--spacing-4) var(--spacing-10) var(--spacing-4) var(--spacing-10);
 }
 
-section>h1 {
+h1 {
     font-size: 1.25rem;
     font-weight: bold;
     color: var(--color-very-dark-grayish-blue);
     margin-top: var(--spacing-7);
 }
 
-section>p {
+section p {
     color: var(--color-desaturated-dark-blue);
     margin-top: var(--spacing-4);
 }
 
 footer {
+    height: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -130,10 +130,9 @@ footer {
     flex-direction: row;
     align-self: stretch;
     flex: 1;
-    gap: var(--spacing-6);
+    gap: clamp(var(--spacing-1), calc(var(--spacing-1) + 2%), var(--spacing-6));
 
     align-items: center;
-
 
     color: var(--color-grayish-blue);
     text-transform: uppercase;
@@ -149,23 +148,99 @@ footer>#share-btn {
     aspect-ratio: 1 / 1 ;
     border-radius: 50%;
     border: none;
-
     background-color: var(--color-light-grayish-blue);
+}
+
+#share-btn svg {
+    color: var(--color-desaturated-dark-blue);
 }
 
 #share-btn:hover {
     cursor: pointer;
 }
 
-/* .tooltip {
-    display: none; 
-    position: absolute;
-    bottom: 100%;
+#share-tooltip {
+    visibility: hidden;
+    background-color: var(--color-very-dark-grayish-blue);
+    padding: var(--spacing-6) var(--spacing-10);
+    border-radius: var(--spacing-4);
+  
+    bottom: 150%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000;
-} */
+ 
+    position: absolute;
+    z-index: 1;
+
+    width: fit-content;
+
+    
+    display: flex;
+    flex-direction: row;
+    gap: clamp(var(--spacing-1), var(--spacing-6));
+
+    align-items: center;
+
+    color: var(--color-grayish-blue);
+    text-transform: uppercase;
+    letter-spacing: var(--spacing-2);
+    font-weight: 100;
+    font-family: "Manrope", sans-serif;
+
+}
+
+#share-tooltip::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--color-very-dark-grayish-blue) transparent transparent transparent;
+}
+
+
+
+@media (min-width: 768px) {
+    main {
+        padding: 0 var(--spacing-8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    article {
+        display: flex;
+        flex-direction: row;
+        width: 732px;
+
+        overflow: visible;
+    }
+    
+    .article-pic {
+        border-top-left-radius: inherit;
+        border-bottom-left-radius: inherit;
+
+        height: auto;
+        width: 288px;
+        flex-shrink: 0;
+    }
+
+    #share-btn {
+        position: relative;
+    }
+
+    #share-btn.active {
+        background-color: var(--color-desaturated-dark-blue);
+    }
+    
+    #share-btn.active svg {
+        color: var(--color-white);
+    }
+    
+    #share-btn:hover #share-tooltip {
+        visibility: visible;
+    }
+}
