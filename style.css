@@ -177,7 +177,7 @@ footer>#share-btn {
     
     display: flex;
     flex-direction: row;
-    gap: clamp(var(--spacing-1), var(--spacing-6));
+    gap: var(--spacing-6);
 
     align-items: center;
 
